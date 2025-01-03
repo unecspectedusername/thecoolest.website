@@ -61,3 +61,24 @@ echo '<pre>С неправильным паролем (checkPassword("admin@admi
 echo var_export(checkPassword('admin@admin.com', '654321'));
 echo '<pre>С неправильным логином (checkPassword("invaliduser@domain.com" , "654321")</pre>';
 echo var_export(checkPassword('invaliduser@domain.com', '654321'));
+
+function getCurrentUser() {
+    session_start();
+    $user = $_SESSION['userName'] ?? null;
+
+    if ($user) {
+        return $user;
+    } else {
+        return false;
+    }
+}
+
+echo <<<'MESSAGE'
+<pre>
+-----------------------------------------------------
+ПРОВЕРКА ФУНКЦИИ getCurrentUser()
+-----------------------------------------------------
+</pre>
+MESSAGE;
+
+echo var_export(getCurrentUser());
