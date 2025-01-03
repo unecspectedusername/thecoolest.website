@@ -1,6 +1,6 @@
 <?php
 
-require_once 'functions.php';
+require_once 'helpers.php';
 
 $_POST = json_decode(file_get_contents("php://input"), true);
 
@@ -8,8 +8,7 @@ $email = checkIfEmpty($_POST['email']);
 $password = checkIfEmpty($_POST['password']);
 $mode = $_POST['mode'];
 
-$database = '../database/users.json';
-$users = json_decode(file_get_contents($database), true);
+$users = getUsersList();
 
 if ($mode === 'verify_credentials') {
     // режим проверки даннных пользователя

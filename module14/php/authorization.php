@@ -1,6 +1,6 @@
 <?php
 
-require_once 'functions.php';
+require_once 'helpers.php';
 
 $email = checkIfEmpty($_POST['email']);
 $password = checkIfEmpty($_POST['password']);
@@ -8,9 +8,8 @@ $password = checkIfEmpty($_POST['password']);
 if (null !== $email || null !== $password) {
 
     try {
-        $database = '../database/users.json';
-
-        $users = $data = json_decode(file_get_contents($database), true);
+        
+        $users = getUsersList();
     
         if (!array_key_exists($email, $users)) {
             echo 'No matching user found';

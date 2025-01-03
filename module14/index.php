@@ -1,7 +1,6 @@
 <?PHP
 session_start();
 $auth = $_SESSION['auth'] ?? null;
-
 ?>
 
 <!DOCTYPE html>

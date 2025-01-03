@@ -58,7 +58,7 @@ header {
   gap: 1rem;
   padding: 1rem 2rem;
   background-color: white;
-  top: 70;
+  top: 75px;
   right: 2rem;
   visibility: hidden;
   /* -webkit-transition: opacity 1s ease-out;
