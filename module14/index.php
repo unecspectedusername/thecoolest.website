@@ -1,8 +1,14 @@
+<?PHP
+session_start();
+$auth = $_SESSION['auth'] ?? null;
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,52 +20,23 @@
 </head>
 
 <body>
-  <div id="header-background"></div>
-  <header>
-    <img src="./assets/logo.svg" alt="Лого">
-    <div id="account">
-      <img src="./assets/account_icon.svg" alt="" width="20" height="20">
-      <div>Войти</div>
-    </div>
-  </header>
+
+  <?php
+
+  if (!$auth) {
+    include_once './php/components/auth_dialog.html';
+    include_once './php/components/register_dialog.html';
+    include_once './php/components/header_unauthorized.php';
+  } else {
+    include_once './php/components/header_authorized.php';
+  }
+  ?>
+
   <div class="hero">
     <div class="parallax-container">
       <h1>Элегантность и покой<br>в идеальной<br><span id="last-word">гармонии</span></h1>
     </div>
   </div>
-
-  <!-- Диалоговое окно входа на сайт -->
-  <dialog class='dialog' id="login-dialog">
-    <form action="">
-      <div class="form-header">
-        <p>Вход или регистрация</p>
-      </div>
-      <div class="form-inputs">
-        <input type="text" placeholder="email">
-        <input type="text" placeholder="пароль">
-        <button type="submit">Войти</button>
-        <div class="registration-link">
-        Еще не зарегистрированы? <a href="">Регистрация</a>
-      </div>
-      </div>
-    </form>
-  </dialog>
-
-  <!-- Диалоговое окно регистрации -->
-  <dialog class='dialog' id="register-dialog">
-    <form action="">
-      <div class="form-header">
-        <p>Регистрация пользователя</p>
-      </div>
-      <div class="form-inputs">
-        <input type="text" placeholder="Ваше имя">
-        <input type="text" placeholder="Дата рождения">
-        <input type="text" placeholder="email">
-        <input type="text" placeholder="пароль">
-        <button type="submit">Зарегистрироваться</button>
-      </div>
-    </form>
-  </dialog>
 
   <div class="separator--wrapper">
     <div class="separator"></div>
@@ -182,7 +159,17 @@
     </div>
   </footer>
 
+  <?php
+  if (!$auth) {
+    echo '<script type="text/javascript" src="./JS/unauthorized.js"></script>';
+    echo '<script type="text/javascript" src="./JS/check_credentials.js"></script>';
+  } else {
+    echo '<script type="text/javascript" src="./JS/authorized.js"></script>';
+  }
+  ?>
+
   <script type="text/javascript" src="./JS/main.js"></script>
+
 </body>
 
 </html>
