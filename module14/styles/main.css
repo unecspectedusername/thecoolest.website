@@ -15,14 +15,24 @@ html {
   font-family: "Spectral", serif;
 }
 
-header,
-#header-background {
+.header-container {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 50px;
-  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+}
+
+#header-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  z-index: -1;
 }
 
 #header-background {
@@ -31,22 +41,45 @@ header,
 }
 
 header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
+  display: flex;
+  box-sizing: border-box;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 2rem;
 }
 
 .account {
   color: white;
   display: flex;
   flex-direction: row;
-  justify-self: end;
   font-size: 1.25rem;
   align-items: center;
 }
 
 .account img {
   margin-right: 0.5rem;
+}
+
+.countdown {
+  display: none;
+  animation: open 2s;
+  background-color: var(--black);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 0.25rem;
+}
+
+@keyframes open {
+  from {
+    opacity: 0;
+    display: none;
+  }
+  
+  to {
+    opacity: 1;
+    display: block;
+  }
 }
 
 .tooltip--authorized {

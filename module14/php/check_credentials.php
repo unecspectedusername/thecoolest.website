@@ -43,6 +43,7 @@ if ($mode === 'verify_credentials') {
 
     $_SESSION['email'] = $email;
     $_SESSION['userName'] = $users[$email]['name'];
+    $_SESSION['birthDate'] = $users[$email]['birthDate'];
     $_SESSION['auth'] = true;
 
     $response = [

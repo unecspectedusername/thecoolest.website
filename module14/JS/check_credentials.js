@@ -91,6 +91,7 @@ function processRegisterResponse(statusCode) {
         removeErrors();
         showError(registrationEmailInput, 'Пользователь с таким email уже существует');
     } else if (statusCode == 0) {
+        // регистрируем новогопользователя
         removeErrors();
         const userName = registrationNameInput.value;
         const birthDate = registrationBirthDateInput.value;

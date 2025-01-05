@@ -1,6 +1,15 @@
 <?PHP
+
+require_once ('./php/helpers.php');
 session_start();
 $auth = $_SESSION['auth'] ?? null;
+$birthDate = $_SESSION['birthDate'] ?? null;
+$userName = $_SESSION['userName'] ?? null;
+$isBirthday = null;
+if ($auth) {
+  $isBirthday = isBirthday($birthDate);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -15,6 +24,9 @@ $auth = $_SESSION['auth'] ?? null;
     href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="./styles/main.css">
+  <?php if ($isBirthday): ?>
+  <link rel="stylesheet" href="./styles/birthday_dialog.css">
+  <?php endif ?>
   <title>Document</title>
 </head>
 
@@ -22,13 +34,18 @@ $auth = $_SESSION['auth'] ?? null;
 
   <?php
 
+  include_once './php/countdown.php';
+  include_once './php/components/header.php';
+
   if (!$auth) {
     include_once './php/components/auth_dialog.html';
     include_once './php/components/register_dialog.html';
-    include_once './php/components/header_unauthorized.php';
-  } else {
-    include_once './php/components/header_authorized.php';
   }
+
+  if ($isBirthday && !isset($_COOKIE['birthdayDialogShown'])) {
+    include_once './php/components/birthday_dialog.php';
+  }
+
   ?>
 
   <div class="hero">
@@ -168,6 +185,7 @@ $auth = $_SESSION['auth'] ?? null;
   ?>
 
   <script type="text/javascript" src="./JS/main.js"></script>
+  <script type="text/javascript" src="./JS/countdown.js"></script>
 
 </body>
 
