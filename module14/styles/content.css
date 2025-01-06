@@ -1,0 +1,153 @@
+
+.separator--wrapper {
+    position: relative;
+  }
+  
+  .separator {
+    position: absolute;
+    z-index: 2;
+    left: 50%;
+    top: -75px;
+    border-left: 2px solid var(--gold);
+    height: 150px;
+  }
+  
+  .content {
+    position: relative;
+  }
+  
+  section {
+    padding-top: 6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 6rem;
+  }
+  
+  .description {
+    background-color: var(--pink);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  h2 {
+    margin-top: 0;
+    color: var(--gold);
+    font-weight: 300;
+    font-size: 2rem;
+  }
+  
+  .description--text {
+    width: 80%;
+    max-width: 400px;
+    text-align: center;
+    color: var(--black);
+    margin-bottom: 2rem;
+  }
+  
+  .description--one-frame {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .description--one-frame > img {
+    width: 100%;
+    max-width: 1200px;
+    height: auto;
+  }
+  
+  .services {
+    background-color: var(--light-pink);
+  }
+  
+  .slider {
+    width: 100%;
+    max-width: 1200px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    overflow-x: auto;
+    gap: 1%;
+    scroll-snap-type: x mandatory;
+  }
+  
+  .slide {
+    min-width: 37%;
+    padding: 27.5% 0;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    text-align: center;
+    color: white;
+    font-weight: 100;
+    font-size: 1.25rem;
+    scroll-snap-align: start;
+  }
+  
+  #slide1 {
+    background-image: url(../assets/slide1.jpg);
+  }
+  
+  #slide2 {
+    background-image: url(../assets/slide2.jpg);
+  }
+  
+  #slide3 {
+    background-image: url(../assets/slide3.jpg);
+  }
+  
+  #slide4 {
+    background-image: url(../assets/slide4.jpg);
+  }
+  
+  #slide5 {
+    background-image: url(../assets/slide5.jpg);
+  }
+  
+  .reviews {
+    background-color: var(--pink);
+  }
+  
+  .reviews--wrapper {
+    background-image: url(../assets/reviews-background.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 98%;
+    max-width: 1200px;
+    height: 675px;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  #reviews-slider {
+    margin-left: 2%;
+    gap: 2%;
+  }
+  
+  .review {
+    background-color: white;
+    min-width: 30%;
+    height: 80%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    padding: 2rem;
+    align-items: center;
+  }
+  
+  .review > img {
+    margin-bottom: 1rem;
+  }
+  
+  .review > p:first-of-type {
+    color: var(--gold);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .review > img:first-of-type {
+    border-radius: 50%;
+  }

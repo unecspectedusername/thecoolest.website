@@ -3,11 +3,20 @@
 // ------------------------------------------------------
 // Функции для выполнения практического задания
 
+// в задании было указано, что функция должна возвращать "пользователей и хеши их паролей"
+// поэтому я настроил возврат только логинов и хешей паролей, опустив остальные данные (имя, дата рождения, id)
 function getUsersList()
 {
-    $database = __DIR__ . '/../database/users.json';
-    $users = json_decode(file_get_contents($database), true);
-    return $users;
+    $users = getUsers();
+    $userData = [];
+    foreach ($users as $user => $data) {
+        $temp = [
+            'user' => $user,
+            'password' => $data['password'],
+        ];
+        array_push($userData, $temp);
+    }
+    return $userData;
 }
 
 echo <<<'MESSAGE'
@@ -18,10 +27,11 @@ echo <<<'MESSAGE'
 </pre>
 MESSAGE;
 
-echo '<pre>' , var_dump(getUsersList()) , '</pre>';
+echo '<pre>', var_dump(getUsersList()), '</pre>';
 
-function existsUser($login) {
-    $users = getUsersList();
+function existsUser($login)
+{
+    $users = getUsers();
     return array_key_exists($login, $users);
 }
 
@@ -38,8 +48,9 @@ echo var_export(existsUser('admin@admin.com'));
 echo '<pre>С НЕправильными данными (existsUser("invaliduser@domain.com")</pre>';
 echo var_export(existsUser('invaliduser@domain.com'));
 
-function checkPassword($login, $password) {
-    $users = getUsersList();
+function checkPassword($login, $password)
+{
+    $users = getUsers();
     if (existsUser($login)) {
         return password_verify($password, $users[$login]['password']);
     } else {
@@ -62,15 +73,10 @@ echo var_export(checkPassword('admin@admin.com', '654321'));
 echo '<pre>С неправильным логином (checkPassword("invaliduser@domain.com" , "654321")</pre>';
 echo var_export(checkPassword('invaliduser@domain.com', '654321'));
 
-function getCurrentUser() {
+function getCurrentUser()
+{
     session_start();
-    $user = $_SESSION['userName'] ?? null;
-
-    if ($user) {
-        return $user;
-    } else {
-        return false;
-    }
+    return $_SESSION['userName'] ?? null;
 }
 
 echo <<<'MESSAGE'
@@ -82,3 +88,11 @@ echo <<<'MESSAGE'
 MESSAGE;
 
 echo var_export(getCurrentUser());
+
+// вспомогательная функция
+
+function getUsers()
+{
+    $database = __DIR__ . '/../database/users.json';
+    return json_decode(file_get_contents($database), true);
+}

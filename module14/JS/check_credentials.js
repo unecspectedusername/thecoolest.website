@@ -18,7 +18,9 @@ loginButton.addEventListener('click', (event) => {
     const email = loginEmailInput.value;
     const password = loginPasswordInput.value;
 
-    if (email.length !== 0 && password.length !== 0) {
+    const allInputsFilled = inputsCheckIfEmpty([loginEmailInput, loginPasswordInput]);
+
+    if (allInputsFilled) {
 
         (async () => {
             const serverResponse = await fetch('./php/check_credentials.php', {
@@ -44,9 +46,11 @@ registrationButton.addEventListener('click', (event) => {
 
     event.preventDefault();
 
+    const allInputsFilled = inputsCheckIfEmpty([registrationNameInput, registrationBirthDateInput, registrationEmailInput, registrationPasswordInput]);
+
     const email = registrationEmailInput.value;
 
-    if (email.length !== 0) {
+    if (allInputsFilled) {
         (async () => {
             const serverResponse = await fetch('./php/check_credentials.php', {
               method: 'POST',
@@ -72,13 +76,13 @@ function processLoginResponse(statusCode) {
     // 2 - данные прошли проверку, можно авторизовать пользователя
 
     if (statusCode == 0) {
-        removeErrors();
+        removeAllErrors();
         showError(loginEmailInput, 'Пользователь с таким email не найден');
     } else if (statusCode == 1) {
-        removeErrors();
+        removeAllErrors();
         showError(loginPasswordInput, 'Неверный пароль');
     } else if (statusCode == 2) {
-        removeErrors();
+        removeAllErrors();
         window.location.reload();
     }
 }
@@ -88,11 +92,11 @@ function processRegisterResponse(statusCode) {
     // 0 - пользователь с таким email не найден
     // 1 - пользователь уже существует
     if (statusCode == 1) {
-        removeErrors();
+        removeAllErrors();
         showError(registrationEmailInput, 'Пользователь с таким email уже существует');
     } else if (statusCode == 0) {
-        // регистрируем новогопользователя
-        removeErrors();
+        // регистрируем нового пользователя
+        removeAllErrors();
         const userName = registrationNameInput.value;
         const birthDate = registrationBirthDateInput.value;
         const email = registrationEmailInput.value;
@@ -119,19 +123,44 @@ function processRegisterResponse(statusCode) {
 }
 
 function showError (input, message) {
-    let errorMessage = document.createElement('small');
-    errorMessage.innerHTML = message;
-    input.after(errorMessage);
-    input.style.borderBottom = '1px solid red';
+    const error = input.nextElementSibling;
+    const errorShown = error.nodeName == 'SMALL';
+    if (!errorShown) {
+      let errorMessage = document.createElement('small');
+      errorMessage.innerHTML = message;
+      input.after(errorMessage);
+      input.classList.add('input-invalid');
+    }
 }
 
-function removeErrors () {
+function removeAllErrors () {
     const errors = document.querySelectorAll('.form-inputs small');
     errors.forEach(element => {
         element.remove();
     });
     const inputs = document.querySelectorAll('.form-inputs input');
-    inputs.forEach(element => {
-        element.style.borderBottom = '1px solid grey';
+    inputs.forEach(input => {
+        input.classList.remove('input-invalid');
     });
+}
+
+function inputsCheckIfEmpty (inputs) {
+  const checkResults = [];
+  inputs.forEach(input => {
+    const error = input.nextElementSibling;
+    const errorShown = error.nodeName == 'SMALL';
+    if (input.value == '') {
+      input.classList.add('input-invalid');
+      showError(input, 'Поле не должно быть пустым');
+      checkResults.push(false);
+    } else {
+      input.classList.remove('input-invalid');
+      const error = input.nextElementSibling;
+        if (errorShown) {
+          error.remove();
+        }
+      checkResults.push(true);
+    }
+  });
+  return checkResults.every(Boolean);
 }

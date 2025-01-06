@@ -11,7 +11,7 @@ $mode = $_POST['mode'];
 $users = getUsersList();
 
 if ($mode === 'verify_credentials') {
-    // режим проверки даннных пользователя
+    // режим проверки данных пользователя
     if ($email === null) {
         echo 'Email is empty';
         die();

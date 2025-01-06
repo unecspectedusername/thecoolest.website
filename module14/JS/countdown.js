@@ -1,8 +1,9 @@
+// получаем данные о первом входе на сайт из куки
 const firstVisitTime = document.cookie
-.split("; ")
-.find((row) => row.startsWith("firstVisitTime="))
-.split("=")[1];
-console.log(firstVisitTime);
+    .split("; ")
+    .find((row) => row.startsWith("firstVisitTime="))
+    .split("=")[1];
+
 
 const currentTime = Math.floor(new Date().getTime() / 1000);
 
@@ -14,23 +15,23 @@ const domMinutes = document.querySelector('#minutes');
 const domSeconds = document.querySelector('#seconds');
 
 function showFormattedTime(time) {
-var h = Math.floor(time / 3600);
-var m = Math.floor(time % 3600 / 60);
-var s = Math.floor(time % 3600 % 60);
-domHours.innerHTML = h;
-domMinutes.innerHTML = m;
-domSeconds.innerHTML = s;
+    const h = Math.floor(time / 3600);
+    const m = Math.floor(time % 3600 / 60);
+    const s = Math.floor(time % 3600 % 60);
+    domHours.innerHTML = h;
+    domMinutes.innerHTML = m;
+    domSeconds.innerHTML = s;
 }
 
 if (timeRemaining > 0) {
-showFormattedTime(timeRemaining)
-domBlock.style.display = 'block';
-setInterval(function () {
-    if (timeRemaining > 0) {
-        showFormattedTime(timeRemaining--);
-    } else {
-        domBlock.style.display = 'none';
-        return;
-    }
-}, 1000);
+    showFormattedTime(timeRemaining);
+    domBlock.style.display = 'block';
+    setInterval(function () {
+        if (timeRemaining > 0) {
+            showFormattedTime(timeRemaining--);
+        } else {
+            domBlock.style.display = 'none';
+            return;
+        }
+    }, 1000);
 }

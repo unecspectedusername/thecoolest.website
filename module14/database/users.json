@@ -1,1 +1,19 @@
-{"admin@admin.com":{"id":1,"name":"Admin","birthDate":{"month":"01","day":"04"},"password":"$2y$12$IHAQxw9x5XEJl.fxIWi2teHYsLjy.h87orpQ9IZ16k73HHpZUiJdy"},"babushkin@me.com":{"id":2,"name":"Федор","birthDate":{"month":"01","day":"04"},"password":"$2y$12$qLGU4VxFMe9TMeTjyTJmUe\/Q\/pnw6jhfh5p40QDNWsP04mXKViomS"},"test@test":{"id":3,"name":"Тест","birthDate":{"month":"12","day":"06"},"password":"$2y$12$aRXh\/oNZpbnIA9lVf0.f1O3jGLQLXLmIcKvMybiYqSgbNlmJ1raH2"},"123@1234":{"id":4,"name":"Тест 2","birthDate":{"month":"01","day":"04"},"password":"$2y$12$BnMi13jRQEWwNpRHoMYx7.HK62CUuXYGu7TDrrPuqwvdqUP\/StAXi"},"test3@test3.com":{"id":5,"name":"test3","birthDate":{"month":"01","day":"04"},"password":"$2y$12$S2k9p4b\/\/EIKIH3KCsVYXOCWuLOeKAs4lXzDqJrW\/gf3H\/MpLx88q"},"test4@test4":{"id":6,"name":"test4","birthDate":{"month":"01","day":"03"},"password":"$2y$12$eiZ4jYPf2GZZxhTsziZrQ.nkd6QoN0Kdn.ULp7ruxlyceRJHAKrMi"},"test5@test5":{"id":7,"name":"test5","birthDate":{"month":"01","day":"04"},"password":"$2y$12$zgLHUkgOhdIYF9iOlCAmnOFSI44J6wy1ekCAWiGNoM3\/P8QPd2yo6"}}
+{
+    "admin@admin.com": {
+        "id": 1,
+        "name": "Admin",
+        "birthDate": {
+            "month": "01",
+            "day": "04"
+        },
+        "password": "$2y$12$IHAQxw9x5XEJl.fxIWi2teHYsLjy.h87orpQ9IZ16k73HHpZUiJdy"
+    },
+    "test1@test1.com": {
+        "id": 2,
+        "name": "Федор",
+        "birthDate": {
+            "month": "01",
+            "day": "04"
+        },
+        "password": "$2y$12$qLGU4VxFMe9TMeTjyTJmUe\/Q\/pnw6jhfh5p40QDNWsP04mXKViomS"
+    }

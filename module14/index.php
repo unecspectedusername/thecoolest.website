@@ -1,19 +1,20 @@
 <?PHP
 
-require_once ('./php/helpers.php');
+require_once('./php/helpers.php');
 session_start();
 $auth = $_SESSION['auth'] ?? null;
 $birthDate = $_SESSION['birthDate'] ?? null;
 $userName = $_SESSION['userName'] ?? null;
-$isBirthday = null;
-if ($auth) {
-  $isBirthday = isBirthday($birthDate);
+$showBirthday = $_COOKIE['showBirthday'] ?? null;
+
+if (!$showBirthday) {
+  setcookie("showBirthday", true, strtotime('+1 day'));
 }
 
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -23,11 +24,13 @@ if ($auth) {
   <link
     href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
     rel="stylesheet">
+  <?php
+  if ($showBirthday) {
+    echo '<link rel="stylesheet" href="./styles/birthday_dialog.css">';
+  }
+  ?>
   <link rel="stylesheet" href="./styles/main.css">
-  <?php if ($isBirthday): ?>
-  <link rel="stylesheet" href="./styles/birthday_dialog.css">
-  <?php endif ?>
-  <title>Document</title>
+  <title>Спа-салон RandomSpa</title>
 </head>
 
 <body>
@@ -42,7 +45,7 @@ if ($auth) {
     include_once './php/components/register_dialog.html';
   }
 
-  if ($isBirthday && !isset($_COOKIE['birthdayDialogShown'])) {
+  if ($showBirthday && $auth) {
     include_once './php/components/birthday_dialog.php';
   }
 

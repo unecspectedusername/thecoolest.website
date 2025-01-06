@@ -1,0 +1,77 @@
+.dialog {
+    font-family: "Spectral", serif;
+    padding: 0; /* чтобы срабатывало закрытие диалога по клику мимо него */
+    border: none; /* чтобы срабатывало закрытие диалога по клику мимо него */
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  dialog > form,
+  dialog div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-content: center;
+    color: var(--black);
+  }
+  
+  .dialog::backdrop {
+    background-color: black;
+    opacity: 0.7;
+  }
+  
+  .form-header {
+    text-align: center;
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border-bottom: 1px solid var(--light-grey);
+  }
+  
+  .form-inputs {
+    padding: 1rem 2rem;
+  }
+  
+  input,
+  button {
+    font-family: "Spectral", serif;
+  }
+
+  
+  .input {
+    border: none;
+    border-bottom: 1px solid grey;
+    appearance: none;
+    margin: 1rem;
+    padding: 1rem 0;
+  }
+
+  .input-invalid {
+    border-bottom: 2px solid red;
+  }
+  
+  .input:focus {
+    outline: none;
+    border-bottom: 1px solid blue;
+  }
+  
+  .button {
+    margin: 2rem 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--gold);
+  }
+  
+  .registration-link {
+    display: inline;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  small {
+      padding: 0 1rem;
+      color: red;
+  }

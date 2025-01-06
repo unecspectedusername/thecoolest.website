@@ -2,7 +2,7 @@
 
 const headerBackground = document.querySelector('#header-background');
 document.addEventListener('scroll', () => {
-    const offset = window.pageYOffset;
+    const offset = window.scrollY;
     if(offset > 100) {
         headerBackground.style.opacity = (offset - 100) / 100;
     } else {
