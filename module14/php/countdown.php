@@ -2,7 +2,6 @@
 
 // записываем время входа пользователя на сайт в куки
 // куки живут 30 дней, затем акцию можно будет показать снова
-
 $cookieSet = $_COOKIE['firstVisitTime'] ?? null;
 $currentTime = strtotime('now');
 

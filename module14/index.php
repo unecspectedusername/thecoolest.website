@@ -1,6 +1,7 @@
 <?PHP
 
 require_once('./php/helpers.php');
+require_once './php/countdown.php';
 session_start();
 $auth = $_SESSION['auth'] ?? null;
 $birthDate = $_SESSION['birthDate'] ?? null;
@@ -37,7 +38,6 @@ if (!$showBirthday) {
 
   <?php
 
-  include_once './php/countdown.php';
   include_once './php/components/header.php';
 
   if (!$auth) {
