@@ -7,13 +7,5 @@
             "day": "04"
         },
         "password": "$2y$12$IHAQxw9x5XEJl.fxIWi2teHYsLjy.h87orpQ9IZ16k73HHpZUiJdy"
-    },
-    "test1@test1.com": {
-        "id": 2,
-        "name": "Федор",
-        "birthDate": {
-            "month": "01",
-            "day": "04"
-        },
-        "password": "$2y$12$qLGU4VxFMe9TMeTjyTJmUe\/Q\/pnw6jhfh5p40QDNWsP04mXKViomS"
     }
+}

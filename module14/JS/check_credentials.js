@@ -41,7 +41,6 @@ loginButton.addEventListener('click', (event) => {
 });
 
 // Проверка существования пользователя в форме регистрации
-
 registrationButton.addEventListener('click', (event) => {
 
     event.preventDefault();
